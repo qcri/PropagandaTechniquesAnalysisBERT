@@ -28,9 +28,20 @@ https://propaganda.qcri.org/annotations/definitions.html
 ## How to use
 
 ```python
+>>> from transformers import BertTokenizerFast
 >>> from .model import BertForTokenAndSequenceJointClassification
+>>>
+>>> tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
 >>> model = BertForTokenAndSequenceJointClassification.from_pretrained(
 >>>     "QCRI/PropagandaTechniquesAnalysis-en-BERT",
 >>>     revision="v0.1.0",
 >>> )
+>>> 
+>>> inputs = tokenizer.encode_plus("Hello, my dog is cute", return_tensors="pt")
+>>> outputs = model(**inputs)
+>>> sequence_class_index = torch.argmax(outputs.sequence_logits, dim=-1)
+>>> sequence_class = model.sequence_tags[sequence_class_index[0]]
+>>> token_class_index = torch.argmax(outputs.token_logits, dim=-1)
+>>> tokens = tokenizer.convert_ids_to_tokens(inputs.input_ids[0][1:-1])
+>>> tags = [model.token_tags[i] for i in token_class_index[0].tolist()[1:-1]]
 ```
