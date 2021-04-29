@@ -27,3 +27,8 @@ https://propaganda.qcri.org/annotations/definitions.html
 
 ## How to use
 
+>>> from .model import BertForTokenAndSequenceJointClassification
+>>> model = BertForTokenAndSequenceJointClassification.from_pretrained(
+>>>     "QCRI/PropagandaTechniquesAnalysis-en-BERT",
+>>>     revision="v0.1.0",
+>>> )
