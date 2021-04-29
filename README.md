@@ -21,10 +21,9 @@ news articles in English. It was introduced in
 
 ## Model description
 
-
-
-## Intended users & limitations
-
+Please find propaganda definition here:
+https://propaganda.qcri.org/annotations/definitions.html
 
 
 ## How to use
+
